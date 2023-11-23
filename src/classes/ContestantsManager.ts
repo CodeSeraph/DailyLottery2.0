@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { TeamMember } from "../interfaces/TeamMember";
+import { Contestants } from "../interfaces/Contestants";
 import path from "path";
 
 const rootPath = process.cwd();
@@ -14,7 +14,7 @@ const workingNamesFilePath = path.join(
   "working.json"
 );
 
-export class TeamMembersManager {
+export class ContestantsManager {
   private defaultNamesPath: string = defaultNamesFilePath;
   private workingNamesPath: string = workingNamesFilePath;
 
@@ -22,10 +22,10 @@ export class TeamMembersManager {
     this.refreshNamesList();
   }
 
-  private readJsonFile(filePath: string): TeamMember[] {
+  private readJsonFile(filePath: string): Contestants[] {
     try {
       const data = fs.readFileSync(filePath, "utf-8");
-      return JSON.parse(data).names as TeamMember[];
+      return JSON.parse(data).names as Contestants[];
     } catch (error) {
       console.error("Error reading JSON file:", error);
       return [];
@@ -48,11 +48,11 @@ export class TeamMembersManager {
     return currentDay === 1;
   }
 
-  private getDefaultNames(): TeamMember[] {
+  private getDefaultNames(): Contestants[] {
     return this.readJsonFile(this.defaultNamesPath);
   }
 
-  private getWorkingNames(): TeamMember[] {
+  private getWorkingNames(): Contestants[] {
     return this.readJsonFile(this.workingNamesPath);
   }
 
@@ -72,39 +72,39 @@ export class TeamMembersManager {
     return array;
   }
 
-  getTeamMembers(): TeamMember[] {
+  getContestants(): Contestants[] {
     const names = this.getWorkingNames();
     return this.shuffle(names);
   }
 
   //   addTeamMember(name: string): void {
-  //     const teamMembers = this.readJsonFile();
+  //     const Contestants = this.readJsonFile();
   //     const newTeamMember: TeamMember = {
   //       name: name,
   //     };
-  //     teamMembers.push(newTeamMember);
-  //     this.writeJsonFile(teamMembers);
+  //     Contestants.push(newTeamMember);
+  //     this.writeJsonFile(Contestants);
   //   }
 
   //   updateTeamMember(oldName: string, newName: string): void {
-  //     const teamMembers = this.readJsonFile();
-  //     const memberIndex = teamMembers.findIndex(
+  //     const Contestants = this.readJsonFile();
+  //     const memberIndex = Contestants.findIndex(
   //       (member) => member.name === oldName
   //     );
 
   //     if (memberIndex !== -1) {
-  //       teamMembers[memberIndex].name = newName;
-  //       this.writeJsonFile(teamMembers);
+  //       Contestants[memberIndex].name = newName;
+  //       this.writeJsonFile(Contestants);
   //     } else {
   //       console.error("Team member not found with name:", oldName);
   //     }
   //   }
 
   deleteTeamMember(name: string): void {
-    const teamMembers = this.getWorkingNames();
-    const updatedTeamMembers = teamMembers.filter(
-      (member) => member.name !== name
+    const contestants = this.getWorkingNames();
+    const updatedContestants = contestants.filter(
+      (contestant) => contestant.name !== name
     );
-    this.writeJsonFile(this.workingNamesPath, { names: updatedTeamMembers });
+    this.writeJsonFile(this.workingNamesPath, { names: updatedContestants });
   }
 }

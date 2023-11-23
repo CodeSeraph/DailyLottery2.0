@@ -1,17 +1,17 @@
-import { TeamMember } from "../interfaces/TeamMember";
-import { TeamMembersManager } from "./TeamMembersManager";
+import { Contestants } from "../interfaces/Contestants";
+import { ContestantsManager } from "./ContestantsManager";
 
 export class PageData {
   title: string;
-  names: TeamMember[];
+  names: Contestants[];
 
   constructor(title: string) {
     this.title = title;
     this.names = this.fetchNames();
   }
 
-  fetchNames(): TeamMember[] {
-    const teamManager = new TeamMembersManager();
-    return teamManager.getTeamMembers();
+  fetchNames(): Contestants[] {
+    const teamManager = new ContestantsManager();
+    return teamManager.getContestants();
   }
 }
