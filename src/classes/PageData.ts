@@ -1,24 +1,17 @@
-import path from "path";
 import { TeamMember } from "../interfaces/TeamMember";
 import { TeamMembersManager } from "./TeamMembersManager";
 
 export class PageData {
   title: string;
-  content: TeamMember[];
+  names: TeamMember[];
 
   constructor(title: string) {
     this.title = title;
-    this.content = this.fetchNames();
+    this.names = this.fetchNames();
   }
 
   fetchNames(): TeamMember[] {
-    const rootPath = process.cwd();
-    const teamMembersFilePath = path.join(
-      rootPath,
-      "src/public/data/names/",
-      "default.json"
-    );
-    const teamManager = new TeamMembersManager(teamMembersFilePath);
+    const teamManager = new TeamMembersManager();
     return teamManager.getTeamMembers();
   }
 }
