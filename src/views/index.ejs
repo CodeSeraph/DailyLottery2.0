@@ -1,14 +1,36 @@
-<!-- src/views/index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles/style.css">
-  <title><%= data.title %></title>
-</head>
-<body>
-  <h1><%= data.title %></h1>
-  <p><%= data.content %></p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <title><%= data.title %></title>
+  </head>
+  <body>
+    <div class="container centered-container">
+      <h2><%= data.title %></h2>
+      
+      <div class="floating-container">
+        <h3>Contestants</h3>
+        <div class="centered-image">
+          <img
+            src="/resources/Odds.jpg"
+            height="250px"
+            alt="Your Image Alt Text"
+          />
+        </div>
+        <form class="form">
+          <% data.content.names.forEach(item => { %>
+          <div class="inputGroup">
+            <input id="<%= item %>" name="<%= item %>" type="checkbox" checked /><label
+              for="<%= item %>"
+              ><%= item %></label
+            >
+          </div> 
+          <% }); %>     
+        </form>
+      </div>
+    </div>
+
+  </body>
 </html>
