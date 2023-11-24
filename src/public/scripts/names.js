@@ -2,6 +2,7 @@ let availableNames = [];
 const checkboxes = document.querySelectorAll(
   '.inputGroup input[type="checkbox"]'
 );
+const wheelElement = document.querySelector(".wheel");
 
 document.addEventListener("DOMContentLoaded", () => {
   checkboxes.forEach((checkbox) => {
@@ -36,8 +37,52 @@ function updateAvailableNames() {
 
 function refreshList() {
   updateAvailableNames();
-  const checkedNamesDiv = document.getElementById("checkedNames");
-  checkedNamesDiv.textContent = availableNames.join(", ");
+  clearWheel();
+
+  const segments = createSegments();
+  segments.forEach((segment) => {
+    addElementToWheel(segment);
+  });
+}
+
+function createSegments() {
+  const size = calculateSize();
+  return availableNames.map((name, index) => {
+    return {
+      id: index,
+      name: name,
+      color: getRandomColor(),
+      size,
+    };
+  });
+}
+
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function calculateSize() {
+  return 360 / availableNames.length + "deg";
+}
+
+function clearWheel() {
+  while (wheelElement.firstChild) {
+    wheelElement.removeChild(wheelElement.firstChild);
+  }
+}
+
+function addElementToWheel(segment) {
+  let newElement = document.createElement("div");
+  newElement.className = "number";
+  newElement.style = `--i:${segment.id};--clr:${segment.color};--d:${segment.size}`;
+  newElement.innerHTML = `<span>${segment.name}</span>`;
+
+  wheelElement.appendChild(newElement);
 }
 
 refreshList();

@@ -1,16 +1,16 @@
-import { Contestants } from "../interfaces/Contestants";
+import { Contestant } from "../interfaces/Contestant";
 import { ContestantsManager } from "./ContestantsManager";
 
 export class PageData {
   title: string;
-  names: Contestants[];
+  names: Contestant[];
 
   constructor(title: string) {
     this.title = title;
     this.names = this.fetchNames();
   }
 
-  fetchNames(): Contestants[] {
+  fetchNames(): Contestant[] {
     const teamManager = new ContestantsManager();
     return teamManager.getContestants();
   }

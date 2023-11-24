@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { Contestants } from "../interfaces/Contestants";
+import { Contestant } from "../interfaces/Contestant";
 import path from "path";
 
 const rootPath = process.cwd();
@@ -22,10 +22,10 @@ export class ContestantsManager {
     this.refreshNamesList();
   }
 
-  private readJsonFile(filePath: string): Contestants[] {
+  private readJsonFile(filePath: string): Contestant[] {
     try {
       const data = fs.readFileSync(filePath, "utf-8");
-      return JSON.parse(data).names as Contestants[];
+      return JSON.parse(data).names as Contestant[];
     } catch (error) {
       console.error("Error reading JSON file:", error);
       return [];
@@ -48,11 +48,11 @@ export class ContestantsManager {
     return currentDay === 1;
   }
 
-  private getDefaultNames(): Contestants[] {
+  private getDefaultNames(): Contestant[] {
     return this.readJsonFile(this.defaultNamesPath);
   }
 
-  private getWorkingNames(): Contestants[] {
+  private getWorkingNames(): Contestant[] {
     return this.readJsonFile(this.workingNamesPath);
   }
 
@@ -72,7 +72,7 @@ export class ContestantsManager {
     return array;
   }
 
-  getContestants(): Contestants[] {
+  getContestants(): Contestant[] {
     const names = this.getWorkingNames();
     return this.shuffle(names);
   }
