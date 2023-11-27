@@ -53,6 +53,7 @@ function createSegments() {
       name: name,
       color: getRandomColor(),
       size,
+      clipPath: createPath(),
     };
   });
 }
@@ -66,8 +67,29 @@ function getRandomColor() {
   return color;
 }
 
+function createPath() {
+  const numberOfSegments = availableNames.length;
+
+  const segmentSize = calculateSize();
+
+  const ratio = 50 + segmentSize / 2;
+  const inverstRatio = 50 - segmentSize / 2;
+
+  if (numberOfSegments === 1) {
+    return "";
+  } else if (numberOfSegments === 2) {
+    return "clip-path: polygon(0 0, 100% 0, 100% 50%, 50% 50%, 0 50%)";
+  } else if (numberOfSegments === 3) {
+    return "clip-path: polygon(0 0, 100% 0, 100% 21.5%, 50% 50%, 0 21.5%)";
+  } else if (numberOfSegments === 4)
+    return "clip-path: polygon(0 0, 100% 0, 100% 0, 50% 50%, 0 0)";
+  else {
+    return `clip-path: polygon(0 0, 100% 0, ${inverstRatio}% 0, 50% 50%, ${ratio}% 0)`;
+  }
+}
+
 function calculateSize() {
-  return 360 / availableNames.length + "deg";
+  return 360 / availableNames.length;
 }
 
 function clearWheel() {
@@ -79,7 +101,7 @@ function clearWheel() {
 function addElementToWheel(segment) {
   let newElement = document.createElement("div");
   newElement.className = "number";
-  newElement.style = `--i:${segment.id};--clr:${segment.color};--d:${segment.size}`;
+  newElement.style = `--i:${segment.id};--clr:${segment.color};--d:${segment.size}deg;${segment.clipPath}`;
   newElement.innerHTML = `<span>${segment.name}</span>`;
 
   wheelElement.appendChild(newElement);
