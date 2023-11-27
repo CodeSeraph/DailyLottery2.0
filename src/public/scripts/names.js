@@ -100,7 +100,7 @@ function clearWheel() {
 
 function addElementToWheel(segment) {
   let newElement = document.createElement("div");
-  newElement.className = "number";
+  newElement.className = "segment";
   newElement.style = `--i:${segment.id};--clr:${segment.color};--d:${segment.size}deg;${segment.clipPath}`;
   newElement.innerHTML = `<span>${segment.name}</span>`;
 

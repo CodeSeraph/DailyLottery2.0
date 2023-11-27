@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Define routes
 app.get("/", (req, res) => {
-  const homeData = new PageData("CC Daily Stand Up Lottery");
+  const homeData = new PageData("Daily Stand Up Lottery");
   res.render("index", { data: homeData });
 });
 

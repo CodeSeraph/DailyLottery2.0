@@ -55,7 +55,7 @@
   box-shadow: 0 0 0 5px #333, 0 0 0 15px #fff, 0 0 0 18px #111;
   transition: transform 5s ease-out;
 }
-.wheelContainer .wheel .number {
+.wheelContainer .wheel .segment {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -64,7 +64,7 @@
   overflow: hidden;
   user-select: none;
 }
-.wheelContainer .wheel .number span {
+.wheelContainer .wheel .segment span {
   position: relative;
   transform: rotate(90deg);
   font-size: 1em;
