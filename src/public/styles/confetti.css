@@ -1,0 +1,18 @@
+/* Confetti animation */
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px; /* Adjust the width as needed */
+  height: 10px; /* Adjust the height as needed */
+  pointer-events: none;
+  z-index: 9999;
+  animation: confetti-fall 5s linear forwards;
+  opacity: 0.7; /* Adjust the opacity as needed */
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(100vh); /* Update to translateY(100vh) */
+  }
+}

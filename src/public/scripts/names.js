@@ -121,4 +121,29 @@ function deleteItem(item) {
     });
 }
 
+function showPartyPopper() {
+  const confettiCount = 1000; // Increase the number of confetti particles
+  const particleSize = 3; // Decrease the size of each particle
+
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random() * 100 + "vw"; // Random horizontal position
+    confetti.style.animationDelay = Math.random() * 4 + "s"; // Random animation delay
+    confetti.style.backgroundColor = getRandomColor(); // Random background color
+    confetti.style.width = particleSize + "px"; // Set particle width
+    confetti.style.height = particleSize + "px"; // Set particle height
+    document.body.appendChild(confetti);
+  }
+
+  // Remove the confetti elements after the animation is complete
+  setTimeout(() => {
+    const confettiElements = document.querySelectorAll(".confetti");
+    confettiElements.forEach((confetti) => {
+      confetti.remove();
+    });
+    resultContainer.style.display = "block"; // Show the winner result
+  }, 5000); // Adjust the duration to match your confetti animation
+}
+
 refreshList();
