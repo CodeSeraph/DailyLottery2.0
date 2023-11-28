@@ -1,6 +1,6 @@
 let wheel = document.querySelector(".wheel");
 let spinBtn = document.querySelector(".spinBtn");
-let value = Math.ceil(Math.random() * 3600);
+let value = Math.ceil((Math.random() + 1) * 3600);
 
 spinBtn.onclick = function () {
   // Remove any existing transition event listener
