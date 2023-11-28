@@ -27,6 +27,7 @@
               for="<%= item %>"
               ><%= item %></label
             >
+            <button class="deleteButton" onclick="deleteItem('<%= item %>'); return false">Delete</button>
           </div> 
           <% }); %>     
         </form>

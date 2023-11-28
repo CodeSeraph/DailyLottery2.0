@@ -107,4 +107,18 @@ function addElementToWheel(segment) {
   wheelElement.appendChild(newElement);
 }
 
+function deleteItem(item) {
+  fetch(`http://localhost:4000/delete/${item}`, {
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Handle the response from the API if needed
+      console.log("Item deleted:", data);
+    })
+    .catch((error) => {
+      console.error("Error deleting item:", error);
+    });
+}
+
 refreshList();
