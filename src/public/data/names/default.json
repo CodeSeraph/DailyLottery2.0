@@ -1,12 +1,28 @@
 {
-  "names": [
-    "Christos",
-    "Huub",
-    "Torben",
-    "Stepan",
-    "Osman",
-    "Victorine",
-    "Mathijs",
-    "Wilfred"
+  "contestants": [
+    {
+      "name": "Christos"
+    },
+    {
+      "name": "Huub"
+    },
+    {
+      "name": "Torben"
+    },
+    {
+      "name": "Stepan"
+    },
+    {
+      "name": "Osman"
+    },
+    {
+      "name": "Victorine"
+    },
+    {
+      "name": "Mathijs"
+    },
+    {
+      "name": "Wilfred"
+    }
   ]
 }

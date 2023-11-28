@@ -25,7 +25,7 @@ export class ContestantsManager {
   private readJsonFile(filePath: string): Contestant[] {
     try {
       const data = fs.readFileSync(filePath, "utf-8");
-      return JSON.parse(data).names as Contestant[];
+      return JSON.parse(data).contestants as Contestant[];
     } catch (error) {
       console.error("Error reading JSON file:", error);
       return [];
@@ -59,7 +59,7 @@ export class ContestantsManager {
   private refreshNamesList(): void {
     if (this.newWeekStarted() || !this.getWorkingNames()?.length) {
       this.writeJsonFile(this.workingNamesPath, {
-        names: this.getDefaultNames(),
+        contestants: this.getDefaultNames(),
       });
     }
   }
@@ -73,8 +73,8 @@ export class ContestantsManager {
   }
 
   getContestants(): Contestant[] {
-    const names = this.getWorkingNames();
-    return this.shuffle(names);
+    const contestants = this.getWorkingNames();
+    return this.shuffle(contestants);
   }
 
   //   addTeamMember(name: string): void {
@@ -105,6 +105,8 @@ export class ContestantsManager {
     const updatedContestants = contestants.filter(
       (contestant) => contestant.name !== name
     );
-    this.writeJsonFile(this.workingNamesPath, { names: updatedContestants });
+    this.writeJsonFile(this.workingNamesPath, {
+      contestants: updatedContestants,
+    });
   }
 }

@@ -21,9 +21,9 @@ app.get("/", (req, res) => {
 
 app.delete("/delete/:name", (req, res) => {
   try {
-    console.log(req.params.name);
     const contestantsManager = new ContestantsManager();
     contestantsManager.deleteTeamMember(req.params.name);
+    res.redirect(`/`);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }

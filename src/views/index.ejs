@@ -21,13 +21,17 @@
           />
         </div>
         <form class="form">
-          <% data.names.forEach(item => { %>
+          <% data.contestants.forEach(item => { %>          
           <div class="inputGroup">
-            <input id="<%= item %>" name="<%= item %>" type="checkbox" checked /><label
-              for="<%= item %>"
-              ><%= item %></label
-            >
-            <button class="deleteButton" onclick="deleteItem('<%= item %>'); return false">Delete</button>
+            <div style="width:85%">
+              <input id="<%= item.name %>" name="<%= item.name %>" type="checkbox" checked /><label
+                for="<%= item.name %>"
+                ><%= item.name %></label
+              >
+            </div>
+            <div style="width:15%">
+              <button class="close" aria-label="Close" onclick="deleteItem('<%= item.name %>');"></button>
+            </div>
           </div> 
           <% }); %>     
         </form>

@@ -13,9 +13,9 @@
 }
 .inputGroup {
   background-color: #fff;
-  display: block;
   margin: 10px 0;
   position: relative;
+  display: flex;
 }
 .inputGroup label {
   padding: 12px 30px;
@@ -90,7 +90,45 @@
   max-width: 550px;
   font-size: 18px;
   font-weight: 600;
-  line-height: 36px;
+}
+
+.close {
+  vertical-align: middle;
+  border: none;
+  color: inherit;
+  border-radius: 50%;
+  background: red;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  opacity: 0.6;
+  margin-top: 7px;
+  cursor: pointer;
+}
+.close:focus,
+.close:hover {
+  opacity: 1;
+  background: rgba(128, 128, 128, 0.5);
+}
+.close:active {
+  background: rgba(128, 128, 128, 0.9);
+}
+/* tines of the X */
+.close::before,
+.close::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 20px;
+  width: 4px;
+  background-color: currentColor;
+}
+.close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 body {
