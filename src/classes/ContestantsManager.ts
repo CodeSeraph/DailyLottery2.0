@@ -48,18 +48,18 @@ export class ContestantsManager {
     return currentDay === 1;
   }
 
-  private getDefaultNames(): Contestant[] {
+  private getDefaultContestants(): Contestant[] {
     return this.readJsonFile(this.defaultNamesPath);
   }
 
-  private getWorkingNames(): Contestant[] {
+  private getWorkingContestants(): Contestant[] {
     return this.readJsonFile(this.workingNamesPath);
   }
 
   private refreshNamesList(): void {
-    if (this.newWeekStarted() || !this.getWorkingNames()?.length) {
+    if (this.newWeekStarted() || !this.getWorkingContestants()?.length) {
       this.writeJsonFile(this.workingNamesPath, {
-        contestants: this.getDefaultNames(),
+        contestants: this.getDefaultContestants(),
       });
     }
   }
@@ -73,7 +73,7 @@ export class ContestantsManager {
   }
 
   getContestants(): Contestant[] {
-    const contestants = this.getWorkingNames();
+    const contestants = this.getWorkingContestants();
     return this.shuffle(contestants);
   }
 
@@ -101,7 +101,7 @@ export class ContestantsManager {
   //   }
 
   deleteTeamMember(name: string): void {
-    const contestants = this.getWorkingNames();
+    const contestants = this.getWorkingContestants();
     const updatedContestants = contestants.filter(
       (contestant) => contestant.name !== name
     );

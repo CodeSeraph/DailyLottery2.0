@@ -6,7 +6,21 @@
   padding: 10px;
   border-radius: 5px;
   min-width: 400px;
+  max-height: 90%;
+  overflow-y: scroll;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
 }
+
+/* For WebKit browsers like Chrome and Safari */
+.floating-container::-webkit-scrollbar {
+  width: 6px; /* Set a thin scrollbar width */
+}
+
+.floating-container::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Set thumb color to transparent */
+}
+
 .centered-container {
   text-align: center;
   margin-top: 20px;
@@ -138,6 +152,18 @@ body {
   padding: 0;
   background-color: #2b2b2b;
   color: #fff;
+  overflow: hidden;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
+/* For WebKit browsers like Chrome and Safari */
+body::-webkit-scrollbar {
+  width: 6px; /* Set a thin scrollbar width */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Set thumb color to transparent */
 }
 
 *,
