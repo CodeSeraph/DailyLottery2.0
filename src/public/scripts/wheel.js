@@ -19,7 +19,39 @@ function handleTransitionEnd() {
   // This function will be called when the 'transitionend' event occurs
   showPartyPopper();
 
+  // get the label element with id winner and set it's inner text to the value returned by findElementBehindRedPixel()
+  const resultContainer = document.querySelector(".result-container");
+  resultContainer.style.display = "block";
+  document.getElementById("winner").innerText = findElementBehindRedPixel();
+
   // Reset the transition property and remove the event listener
   wheel.style.transition = "";
   wheel.removeEventListener("transitionend", handleTransitionEnd);
+}
+
+function findElementBehindRedPixel() {
+  const redPixelElement = document.querySelector(".redPixel");
+  const rect = redPixelElement.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  const elementsAtPoint = document.elementsFromPoint(centerX, centerY);
+
+  // Loop through the elements to find the one behind the redPixel
+  let elementBehindRedPixel = null;
+  for (let i = 1; i < elementsAtPoint.length; i++) {
+    if (elementsAtPoint[i] !== redPixelElement) {
+      elementBehindRedPixel = elementsAtPoint[i];
+      break;
+    }
+  }
+
+  // if the element is a span then return the inner text else search for the first span and then return the inner text
+  if (elementBehindRedPixel.tagName === "SPAN") {
+    return elementBehindRedPixel.innerText;
+  } else if (elementBehindRedPixel.tagName === "DIV") {
+    return elementBehindRedPixel.firstChild.innerText;
+  } else {
+    return "It's a tie! Spin again!";
+  }
 }

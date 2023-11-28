@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="container centered-container">
-      <h2><%= data.title %></h2>
+      <h1><%= data.title %></h1>
 
       <div class="floating-container">
         <h3>Contestants</h3>
@@ -48,7 +48,13 @@
         <div class="wheelContainer">
           <div class="spinBtn">Spin</div>
           <div class="wheel"></div>
+          <div class="redPixel"></div>
         </div>
+      </div>
+
+      <div class="result-container">
+        <h1>Winner:</h1>
+        <p id="winner"></p>
       </div>
     </div>
 

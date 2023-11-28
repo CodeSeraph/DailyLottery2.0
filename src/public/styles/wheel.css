@@ -7,12 +7,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 40px;
 }
 .wheelContainer {
   position: relative;
-  width: 700px;
-  height: 700px;
+  width: 600px;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,6 +56,21 @@
   box-shadow: 0 0 0 5px #333, 0 0 0 15px #fff, 0 0 0 18px #111;
   transition: transform 5s ease-out;
 }
+
+.wheelContainer {
+  position: relative;
+  /* ...other styles... */
+  z-index: 1; /* Lower z-index to keep it under other elements */
+}
+.wheelContainer .redPixel {
+  position: absolute;
+  top: 50px; /* Adjust the top position as needed */
+  width: 3px;
+  height: 3px;
+  background-color: transparent;
+  z-index: 999; /* Ensure it's above the wheel */
+}
+
 .wheelContainer .wheel .segment {
   position: absolute;
   width: 100%;
