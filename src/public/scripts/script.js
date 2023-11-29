@@ -107,8 +107,8 @@ function addElementToWheel(segment) {
   wheelElement.appendChild(newElement);
 }
 
-function deleteItem(item) {
-  fetch(`http://localhost:4000/delete/${item}`, {
+function deleteItem(name) {
+  fetch(`http://localhost:4000/delete/${name}`, {
     method: "DELETE",
   })
     .then((response) => response.json())

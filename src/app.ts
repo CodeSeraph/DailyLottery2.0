@@ -19,6 +19,15 @@ app.get("/", (req, res) => {
   res.render("index", { data: homeData });
 });
 
+app.post("/disable/:name", (req, res) => {
+  try {
+    const contestantsManager = new ContestantsManager();
+    contestantsManager.disableTeamMember(req.params.name);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.delete("/delete/:name", (req, res) => {
   try {
     const contestantsManager = new ContestantsManager();

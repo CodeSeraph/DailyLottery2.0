@@ -22,7 +22,9 @@ function handleTransitionEnd() {
   // get the label element with id winner and set it's inner text to the value returned by findElementBehindRedPixel()
   const resultContainer = document.querySelector(".result-container");
   resultContainer.style.display = "block";
-  document.getElementById("winner").innerText = findElementBehindRedPixel();
+  const winnerName = findElementBehindRedPixel();
+  document.getElementById("winner").innerText = winnerName;
+  disableItem(winnerName);
 
   // Reset the transition property and remove the event listener
   wheel.style.transition = "";
@@ -54,4 +56,18 @@ function findElementBehindRedPixel() {
   } else {
     return "It's a tie! Spin again!";
   }
+}
+
+function disableItem(name) {
+  fetch(`http://localhost:4000/disable/${name}`, {
+    method: "POST",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Handle the response from the API if needed
+      console.log("Item disabled:", data);
+    })
+    .catch((error) => {
+      console.error("Error disabling item:", error);
+    });
 }

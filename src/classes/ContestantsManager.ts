@@ -69,7 +69,20 @@ export class ContestantsManager {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+
+    // order by enabled first
+    array.sort(this.orderByEnabled);
+
     return array;
+  }
+
+  private orderByEnabled(a: Contestant, b: Contestant) {
+    // Convert boolean values to integers (true becomes 1, false becomes 0)
+    const enabledA = a.enabled ? 1 : 0;
+    const enabledB = b.enabled ? 1 : 0;
+
+    // Compare the values
+    return enabledB - enabledA;
   }
 
   getContestants(): Contestant[] {
@@ -105,6 +118,19 @@ export class ContestantsManager {
     const updatedContestants = contestants.filter(
       (contestant) => contestant.name !== name
     );
+    this.writeJsonFile(this.workingNamesPath, {
+      contestants: updatedContestants,
+    });
+  }
+
+  disableTeamMember(name: string): void {
+    const contestants = this.getWorkingContestants();
+    const updatedContestants = contestants.map((contestant) => {
+      if (contestant.name === name) {
+        contestant.enabled = false;
+      }
+      return contestant;
+    });
     this.writeJsonFile(this.workingNamesPath, {
       contestants: updatedContestants,
     });

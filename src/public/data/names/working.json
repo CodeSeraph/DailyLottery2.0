@@ -1,22 +1,36 @@
 {
   "contestants": [
     {
-      "name": "Huub"
+      "name": "Christos",
+      "enabled": false
     },
     {
-      "name": "Torben"
+      "name": "Huub",
+      "enabled": true
     },
     {
-      "name": "Stepan"
+      "name": "Torben",
+      "enabled": true
     },
     {
-      "name": "Osman"
+      "name": "Stepan",
+      "enabled": false
     },
     {
-      "name": "Mathijs"
+      "name": "Osman",
+      "enabled": true
     },
     {
-      "name": "Wilfred"
+      "name": "Victorine",
+      "enabled": false
+    },
+    {
+      "name": "Mathijs",
+      "enabled": true
+    },
+    {
+      "name": "Wilfred",
+      "enabled": true
     }
   ]
 }

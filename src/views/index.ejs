@@ -29,16 +29,19 @@
                 id="<%= item.name %>"
                 name="<%= item.name %>"
                 type="checkbox"
-                checked
+                <%= item.enabled ? 'checked' : '' %> 
+                <%= item.enabled ? '' : 'disabled' %>
               /><label for="<%= item.name %>"><%= item.name %></label>
             </div>
-            <div style="width: 15%">
+            <% if (item.enabled) { %>
+            <div style="width: 15%" >
               <button
                 class="close"
                 aria-label="Close"
-                onclick="deleteItem('<%= item.name %>');"
+                onclick="deleteItem('<%= item.name %>');"                
               ></button>
             </div>
+            <% } %>
           </div>
           <% }); %>
         </form>
