@@ -19,6 +19,16 @@ app.get("/", (req, res) => {
   res.render("index", { data: homeData });
 });
 
+app.post("/add/:name", (req, res) => {
+  try {
+    const contestantsManager = new ContestantsManager();
+    contestantsManager.addTeamMember(req.params.name);
+    res.redirect(`/`);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.post("/disable/:name", (req, res) => {
   try {
     const contestantsManager = new ContestantsManager();

@@ -107,7 +107,23 @@ function addElementToWheel(segment) {
   wheelElement.appendChild(newElement);
 }
 
-function deleteItem(name) {
+function addContestant() {
+  const name = document.getElementById("newContestant").value;
+
+  fetch(`http://localhost:4000/add/${name}`, {
+    method: "POST",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Handle the response from the API if needed
+      console.log("Item added:", data);
+    })
+    .catch((error) => {
+      console.error("Error adding item:", error);
+    });
+}
+
+function deleteContestant(name) {
   fetch(`http://localhost:4000/delete/${name}`, {
     method: "DELETE",
   })

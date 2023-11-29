@@ -90,14 +90,24 @@ export class ContestantsManager {
     return this.shuffle(contestants);
   }
 
-  //   addTeamMember(name: string): void {
-  //     const Contestants = this.readJsonFile();
-  //     const newTeamMember: TeamMember = {
-  //       name: name,
-  //     };
-  //     Contestants.push(newTeamMember);
-  //     this.writeJsonFile(Contestants);
-  //   }
+  addTeamMember(name: string): void {
+    // add to working file
+    this.add(this.getWorkingContestants(), this.workingNamesPath, name);
+
+    // add to default file
+    this.add(this.getDefaultContestants(), this.defaultNamesPath, name);
+  }
+
+  private add(contestants: Contestant[], path: string, name: string): void {
+    contestants.push({
+      name,
+      enabled: true,
+    });
+
+    this.writeJsonFile(path, {
+      contestants,
+    });
+  }
 
   //   updateTeamMember(oldName: string, newName: string): void {
   //     const Contestants = this.readJsonFile();
@@ -114,11 +124,18 @@ export class ContestantsManager {
   //   }
 
   deleteTeamMember(name: string): void {
-    const contestants = this.getWorkingContestants();
+    // delete from working file
+    this.delete(this.getWorkingContestants(), this.workingNamesPath, name);
+
+    // delete from default file
+    this.delete(this.getDefaultContestants(), this.defaultNamesPath, name);
+  }
+
+  private delete(contestants: Contestant[], path: string, name: string): void {
     const updatedContestants = contestants.filter(
       (contestant) => contestant.name !== name
     );
-    this.writeJsonFile(this.workingNamesPath, {
+    this.writeJsonFile(path, {
       contestants: updatedContestants,
     });
   }
