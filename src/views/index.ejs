@@ -41,7 +41,8 @@
           </div>
           <% data.contestants.forEach(item => { %>
           <div class="inputGroup">
-            <div style="width: 85%">
+            <div class="contestant <%= item.enabled ? '' : 'contestantDisabled' %>"           
+            >
               <input
                 id="<%= item.name %>"
                 name="<%= item.name %>"
@@ -50,7 +51,6 @@
                 <%= item.enabled ? '' : 'disabled' %>
               /><label for="<%= item.name %>"><%= item.name %></label>
             </div>
-            <% if (item.enabled) { %>
             <div style="width: 15%" >
               <button
                 class="close"
@@ -58,7 +58,6 @@
                 onclick="deleteItem('<%= item.name %>');"                
               ></button>
             </div>
-            <% } %>
           </div>
           <% }); %>
         </form>

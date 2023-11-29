@@ -98,6 +98,13 @@
   cursor: pointer;
   visibility: hidden;
 }
+.contestant {
+  width: 85%;
+}
+
+.contestantDisabled {
+  background-color: darkgrey; /* Set a grey background color for disabled inputs */
+}
 
 .form {
   padding: 0 16px;
