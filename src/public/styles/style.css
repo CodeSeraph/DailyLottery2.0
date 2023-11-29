@@ -156,6 +156,48 @@
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+#newContestantInputGroup {
+  margin-top: 10px;
+  padding: 7px;
+}
+
+#newContestantInputGroup input[type="text"] {
+  width: 85%;
+  padding: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  margin-right: 21px;
+  visibility: visible;
+}
+
+#newContestantInputGroup input[type="text"]:focus {
+  border: none; /* Remove border on focus */
+  outline: none;
+}
+
+#newContestantInputGroup .add {
+  width: 32px;
+  height: 32px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 200ms ease-in;
+  margin-left: 10px;
+}
+
+#newContestantInputGroup .add:before {
+  content: "+";
+  font-size: 20px;
+  line-height: 32px;
+}
+
+#newContestantInputGroup .add:hover {
+  background-color: #45a049;
+}
+
 body {
   font-family: "Arial", sans-serif;
   text-align: center;
