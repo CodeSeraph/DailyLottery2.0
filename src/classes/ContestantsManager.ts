@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import { Contestant } from "../interfaces/Contestant";
 import path from "path";
+import { Contestants } from "../interfaces/Contestants";
 
 const rootPath = process.cwd();
 const defaultNamesFilePath = path.join(
@@ -22,18 +23,19 @@ export class ContestantsManager {
     this.refreshNamesList();
   }
 
-  private readJsonFile(filePath: string): Contestant[] {
+  private readJsonFile(filePath: string): Contestants {
     try {
       const data = fs.readFileSync(filePath, "utf-8");
-      return JSON.parse(data).contestants as Contestant[];
+      return JSON.parse(data) as Contestants;
     } catch (error) {
       console.error("Error reading JSON file:", error);
-      return [];
+      return {} as Contestants;
     }
   }
 
   private writeJsonFile(filePath: string, data: any): void {
     try {
+      data.timestamp = new Date();
       fs.writeFileSync(filePath, JSON.stringify(data, null, 2), {
         encoding: "utf-8",
         flag: "w",
@@ -47,22 +49,29 @@ export class ContestantsManager {
     const today = new Date();
     const currentDay = today.getDay(); // Returns a number from 0 (Sunday) to 6 (Saturday)
 
-    // Check if day is Monday
-    return currentDay === 1;
+    // Check if day is Monday and last updated is not today
+    return currentDay === 1 && this.lastUpdated() !== today.getDate();
   }
 
-  private getDefaultContestants(): Contestant[] {
+  private lastUpdated(): number {
+    return new Date(this.getWorkingContestants()?.timestamp).getDate();
+  }
+
+  private getDefaultContestants(): Contestants {
     return this.readJsonFile(this.defaultNamesPath);
   }
 
-  private getWorkingContestants(): Contestant[] {
+  private getWorkingContestants(): Contestants {
     return this.readJsonFile(this.workingNamesPath);
   }
 
   private refreshNamesList(): void {
-    if (this.newWeekStarted() || !this.getWorkingContestants()?.length) {
+    if (
+      this.newWeekStarted() ||
+      !this.getWorkingContestants()?.contestants.length
+    ) {
       this.writeJsonFile(this.workingNamesPath, {
-        contestants: this.getDefaultContestants(),
+        contestants: this.getDefaultContestants().contestants,
       });
     }
   }
@@ -73,6 +82,7 @@ export class ContestantsManager {
       [array[i], array[j]] = [array[j], array[i]];
     }
 
+    console.log(array);
     // order by enabled first
     array.sort(this.orderByEnabled);
 
@@ -89,16 +99,24 @@ export class ContestantsManager {
   }
 
   getContestants(): Contestant[] {
-    const contestants = this.getWorkingContestants();
+    const contestants = this.getWorkingContestants().contestants;
     return this.shuffle(contestants);
   }
 
   addTeamMember(name: string): void {
     // add to working file
-    this.add(this.getWorkingContestants(), this.workingNamesPath, name);
+    this.add(
+      this.getWorkingContestants().contestants,
+      this.workingNamesPath,
+      name
+    );
 
     // add to default file
-    this.add(this.getDefaultContestants(), this.defaultNamesPath, name);
+    this.add(
+      this.getDefaultContestants().contestants,
+      this.defaultNamesPath,
+      name
+    );
   }
 
   private add(contestants: Contestant[], path: string, name: string): void {
@@ -128,10 +146,18 @@ export class ContestantsManager {
 
   deleteTeamMember(name: string): void {
     // delete from working file
-    this.delete(this.getWorkingContestants(), this.workingNamesPath, name);
+    this.delete(
+      this.getWorkingContestants().contestants,
+      this.workingNamesPath,
+      name
+    );
 
     // delete from default file
-    this.delete(this.getDefaultContestants(), this.defaultNamesPath, name);
+    this.delete(
+      this.getDefaultContestants().contestants,
+      this.defaultNamesPath,
+      name
+    );
   }
 
   private delete(contestants: Contestant[], path: string, name: string): void {
@@ -144,7 +170,7 @@ export class ContestantsManager {
   }
 
   disableTeamMember(name: string): void {
-    const contestants = this.getWorkingContestants();
+    const contestants = this.getWorkingContestants().contestants;
     const updatedContestants = contestants.map((contestant) => {
       if (contestant.name === name) {
         contestant.enabled = false;
