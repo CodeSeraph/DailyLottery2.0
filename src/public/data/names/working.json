@@ -1,0 +1,57 @@
+{
+  "contestants": [
+    {
+      "name": "Christos",
+      "enabled": false
+    },
+    {
+      "name": "Huub",
+      "enabled": true
+    },
+    {
+      "name": "Stepan",
+      "enabled": true
+    },
+    {
+      "name": "Osman",
+      "enabled": true
+    },
+    {
+      "name": "Victorine",
+      "enabled": true
+    },
+    {
+      "name": "Mathijs",
+      "enabled": true
+    },
+    {
+      "name": "Zara",
+      "enabled": true
+    },
+    {
+      "name": "Sydney",
+      "enabled": true
+    },
+    {
+      "name": "Bryan",
+      "enabled": true
+    },
+    {
+      "name": "Niels",
+      "enabled": true
+    },
+    {
+      "name": "Vivek",
+      "enabled": true
+    },
+    {
+      "name": "Gert-Jan",
+      "enabled": true
+    },
+    {
+      "name": "Jeroen",
+      "enabled": true
+    }
+  ],
+  "timestamp": "2024-01-15T09:03:44.027Z"
+}
