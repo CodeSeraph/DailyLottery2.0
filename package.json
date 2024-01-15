@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && npm run copy-static",
-    "build-linux": "tsc && npm run copy-static-linux",
+    "build": "tsc -p . && npm run copy-static",
+    "build-linux": "tsc -p . && npm run copy-static-linux",
     "copy-static": "robocopy src dist /S /XF * /XD src\\public\\* /XD src\\views\\*",
     "copy-static-linux": "cp -r src/public dist/ && cp -r src/views dist/",
     "start": "node dist/app.js",
