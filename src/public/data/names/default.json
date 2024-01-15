@@ -9,10 +9,6 @@
       "enabled": true
     },
     {
-      "name": "Torben",
-      "enabled": true
-    },
-    {
       "name": "Stepan",
       "enabled": true
     },
@@ -27,6 +23,27 @@
     {
       "name": "Mathijs",
       "enabled": true
+    },
+    {
+      "name": "Zara",
+      "enabled": true
+    },
+    {
+      "name": "Sydney",
+      "enabled": true
+    },
+    {
+      "name": "Bryan",
+      "enabled": true
+    },
+    {
+      "name": "Niels",
+      "enabled": true
+    },
+    {
+      "name": "Vivek",
+      "enabled": true
     }
-  ]
+  ],
+  "timestamp": "2024-01-09T08:06:27.799Z"
 }

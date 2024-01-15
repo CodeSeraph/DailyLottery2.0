@@ -48,9 +48,13 @@ export class ContestantsManager {
   private newWeekStarted(): boolean {
     const today = new Date();
     const currentDay = today.getDay(); // Returns a number from 0 (Sunday) to 6 (Saturday)
+    const contestants = this.getWorkingContestants();
 
-    // Check if day is Monday and last updated is not today
-    return currentDay === 1 && this.lastUpdated() !== today.getDate();
+    // Check if day is Monday and last updated is not today OR working.json is empty
+    return (
+      (currentDay === 1 && this.lastUpdated() !== today.getDate()) ||
+      !contestants.contestants
+    );
   }
 
   private lastUpdated(): number {
@@ -82,7 +86,6 @@ export class ContestantsManager {
       [array[i], array[j]] = [array[j], array[i]];
     }
 
-    console.log(array);
     // order by enabled first
     array.sort(this.orderByEnabled);
 
@@ -129,20 +132,6 @@ export class ContestantsManager {
       contestants,
     });
   }
-
-  //   updateTeamMember(oldName: string, newName: string): void {
-  //     const Contestants = this.readJsonFile();
-  //     const memberIndex = Contestants.findIndex(
-  //       (member) => member.name === oldName
-  //     );
-
-  //     if (memberIndex !== -1) {
-  //       Contestants[memberIndex].name = newName;
-  //       this.writeJsonFile(Contestants);
-  //     } else {
-  //       console.error("Team member not found with name:", oldName);
-  //     }
-  //   }
 
   deleteTeamMember(name: string): void {
     // delete from working file
