@@ -23,7 +23,6 @@
     "typescript": "^5.3.2"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "ejs-cli": "^2.2.3"
+    "@types/express": "^4.17.21"
   }
 }
