@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc && robocopy src dist /S /XD src\\classes src\\interfaces",
-    "build-linux": "tsc && cp -r src/public dist/",
+    "build-linux": "tsc && rsync -av --exclude=src/classes --exclude=src/interfaces src/ dist/",
     "start": "node dist/app.js",
     "dev": "nodemon --exec ts-node src/app.ts"
   },
