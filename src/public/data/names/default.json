@@ -43,7 +43,15 @@
     {
       "name": "Vivek",
       "enabled": true
+    },
+    {
+      "name": "Gert-Jan",
+      "enabled": true
+    },
+    {
+      "name": "Jeroen",
+      "enabled": true
     }
   ],
-  "timestamp": "2024-01-09T08:06:27.799Z"
+  "timestamp": "2024-01-15T09:03:44.033Z"
 }
