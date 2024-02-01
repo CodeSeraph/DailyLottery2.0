@@ -10,7 +10,7 @@
     },
     {
       "name": "Stepan",
-      "enabled": true
+      "enabled": false
     },
     {
       "name": "Osman",
@@ -25,7 +25,7 @@
       "enabled": true
     },
     {
-      "name": "Zara",
+      "name": "Zarah",
       "enabled": true
     },
     {
@@ -53,5 +53,5 @@
       "enabled": true
     }
   ],
-  "timestamp": "2024-01-15T09:03:44.027Z"
+  "timestamp": "2024-01-31T08:32:47.511Z"
 }
